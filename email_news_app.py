@@ -4,11 +4,11 @@ sys.stdout.reconfigure(encoding='utf-8')
 from send_email import send_email
 import requests
 
-
+topic = "technology, business"
 url = (
 "https://newsdata.io/api/1/latest?"
 "apikey=pub_ab9a3133cb864b98a711ca502e125633"
-"&q=technology and business"
+f"&q={topic}"
 "&country=in,us"
 "&language=en"
 "&category=breaking,science,technology"
@@ -21,9 +21,11 @@ print(data["results"])
 
 # Print titles and descriptions of the news articles
 body = " "
-for result in data["results"]:
+for result in data["results"][0:10]:
     if result["title"] is not None:
-        body = body + result["title"] + "\n" + result["description"] + 2*"\n"
+        body = "subject: TODAYS BREAKING NEWS" + "\n" + body + result["title"] + "\n" \
+            + result["description"] + "\n" \
+            + result["link"] + 2*"\n"
 
 body = body.encode('utf-8')
 send_email(message=body)
