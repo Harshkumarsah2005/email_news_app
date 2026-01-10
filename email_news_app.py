@@ -4,14 +4,14 @@ sys.stdout.reconfigure(encoding='utf-8')
 from send_email import send_email
 import requests
 
-topic = "technology, business"
+topic = "Sports and gaming"
 url = (
 "https://newsdata.io/api/1/latest?"
 "apikey=pub_ab9a3133cb864b98a711ca502e125633"
 f"&q={topic}"
 "&country=in,us"
 "&language=en"
-"&category=breaking,science,technology"
+"&category=breaking, science, technology"
 "&removeduplicate=1"
 "&sort=relevancy"
 )
